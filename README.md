@@ -138,6 +138,7 @@ analysis, two thresholds were selected:
 These two modes will aid in the design of our deployed model, which will alert differently for threats based on their threshold. Lower thresholds produce early-warning alerts, while 
 higher thresholds produce high-confidence, critical alerts.
 
+# Model Testing & Evaluation
 The final reduced XGBoost model was tested on the test dataset. The model generated probability scores for each sample, which were then evaluated at 
 the two chosen thresholds (0.18 and 0.64). For each threshold, we computed precision, recall, F1-score, and confusion matrices. Since the test set was not 
 used during training or tuning, these results reflect the true performance of the model on unseen data.
