@@ -15,7 +15,7 @@ The goal of this semester is to:
 All modeling was performed offline on static CERT logs.
 
 ### Repository Structure
-"""
+```
 Senior-Design-Insider-Threat-Detection/
 │
 ├── data/
@@ -43,6 +43,6 @@ Senior-Design-Insider-Threat-Detection/
 │
 ├── requirements.txt
 └── README.md
-"""
+```
 ### Environment Setup
 
