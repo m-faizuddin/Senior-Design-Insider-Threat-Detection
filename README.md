@@ -1,5 +1,5 @@
-# AI-Based Insider Threat Detection
-## Mohammed Faizudden, Anna Wille, Maya Wyganowska
+## AI-Based Insider Threat Detection
+### Mohammed Faizudden, Anna Wille, Maya Wyganowska
 
 ### Offline XGBoost Model
 This repository contains the Semester 1 deliverables for the CS492 AI-Based Insider Threat Detection project:
@@ -18,8 +18,7 @@ All modeling was performed offline on static CERT r4.2 logs.
 ```
 Senior-Design-Insider-Threat-Detection/
 │
-├── data/
-│   ├── raw/                
+├── data/            
 │   ├── processed/          
 │   └── features.csv        
 │
@@ -58,7 +57,7 @@ Launch Jupyter Notebook:
 ```
 jupyter notebook
 ```
-### Dataset & Preprocessing
+### Dataset
 This project uses the CERT Insider Threat Dataset, a simulated environment containing user behavior logs such as:
 - logon/logoff activity
 - file access
@@ -68,13 +67,50 @@ This project uses the CERT Insider Threat Dataset, a simulated environment conta
 - psychometric scores
 - HR events
 
-The raw r4.2 dataset is included in "data/raw/" download it from there or
-
 [Download the CERT r4.2 Dataset](https://doi.org/10.1184/R1/12841247)
 
-CERT provides a feature extraction script to be used on these datasets. This script merges all raw logs (logon, file, email, USB, web, HR, psychometric)
+### Feature Extraction
+CERT provides a feature extraction script to be used on their datasets. This script merges all raw logs (logon, file, email, USB, web, HR, psychometric)
 into a single feature matrix representing user–day behavioral data.
 
-[Access the Feature Extraction Script](https://github.com/lcd-dal/feature-extraction-for-CERT-insider-threat-test-datasets)
+Use the repository's documentation to install feature extraction script dependencies and run.
 
 
+[Download the Feature Extraction Script](https://github.com/lcd-dal/feature-extraction-for-CERT-insider-threat-test-datasets)
+
+The script outputs a structured `features.csv` file that is used as input to the offline XGBoost modeling pipeline.
+
+### Preprocessing
+Notebook 01_preprocessing outlines the process we used to clean and split the extracted data. 
+
+This step:
+- loads features.csv
+- cleans unused fields
+- identifies feature columns
+- creates train/validation/test splits
+- saves processed files for modeling
+
+### Model Comparison
+Notebook 02_modelComparison outlines the process we used to select our best model. In models that struggle with heavy class imbalances, we implemented a SMOTE pipeline to create more synthetic insider threats and see if a more balanced dataset could produce more accurate results.
+
+We evaluated four baseline models:
+- Logistic Regression
+- Linear SVM
+- Random Forest
+- XGBoost
+
+XGBoost achieved the highest F1-score and recall, making it the best fit for imbalanced insider classification.
+
+### Model Tuning
+Notebook 03_modelTuning outlines the process we used to tune our XGBoost model to the best parameters.
+
+RandomizedSearchCV produced the final optimized parameters:
+```
+learning_rate = 0.1
+max_depth = 4
+n_estimators = 400
+scale_pos_weight = 100
+```
+These parameters balance underfitting/overfitting and handle extreme class imbalance without using SMOTE.
+
+### Feature Selection
