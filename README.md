@@ -1,7 +1,7 @@
 ## AI-Based Insider Threat Detection
 ### Mohammed Faizudden, Anna Wille, Maya Wyganowska
 
-### Offline XGBoost Model
+# Offline XGBoost Model
 This repository contains the Semester 1 deliverables for the CS492 AI-Based Insider Threat Detection project:
 a complete offline machine-learning pipeline for detecting insider threats using the CERT r4.2 Insider Threat Dataset.
 
@@ -141,3 +141,27 @@ higher thresholds produce high-confidence, critical alerts.
 The final reduced XGBoost model was tested on the test dataset. The model generated probability scores for each sample, which were then evaluated at 
 the two chosen thresholds (0.18 and 0.64). For each threshold, we computed precision, recall, F1-score, and confusion matrices. Since the test set was not 
 used during training or tuning, these results reflect the true performance of the model on unseen data.
+
+### Alert Mode Results
+```
+Precision: 0.7423  
+Recall:    0.7579  
+F1-score:  0.7500  
+Accuracy:  0.9976  
+
+Confusion Matrix:
+[[20030   25]
+ [   23   72]]
+```
+### Critical Mode Results
+```
+Precision: 0.9194  
+Recall:    0.6000  
+F1-score:  0.7261  
+Accuracy:  0.9979  
+
+Confusion Matrix:
+[[20050     5]
+ [   38    57]]
+```
+# Using the Model
