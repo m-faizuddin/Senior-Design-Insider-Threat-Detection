@@ -13,3 +13,35 @@ The goal of this semester is to:
 -prepare for deployment in Semester 2
 
 All modeling was performed offline on static CERT logs.
+
+### Repository Structure
+certml-insider-threat/
+│
+├── data/
+│   ├── raw/                
+│   ├── processed/          
+│   └── features.csv        
+│
+├── notebooks/
+│   ├── 01_preprocessing.ipynb
+│   ├── 02_model_comparison.ipynb
+│   ├── 03_xgboost_tuning.ipynb
+│   ├── 04_feature_selection.ipynb
+│   ├── 05_threshold_evaluation.ipynb
+│   └── 06_calibration_curves.ipynb (optional)
+│
+├── models/
+│   ├── xgb_final_model.joblib
+│   └── feature_list.json
+│
+├── src/
+│   └── utils.py
+│
+├── figures/
+│   └── *plots used for final report*
+│
+├── requirements.txt
+└── README.md
+
+### Environment Setup
+
