@@ -15,7 +15,8 @@ The goal of this semester is to:
 All modeling was performed offline on static CERT logs.
 
 ### Repository Structure
-certml-insider-threat/
+'''
+Senior-Design-Insider-Threat-Detection/
 │
 ├── data/
 │   ├── raw/                
@@ -42,6 +43,6 @@ certml-insider-threat/
 │
 ├── requirements.txt
 └── README.md
-
+'''
 ### Environment Setup
 
