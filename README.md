@@ -165,3 +165,39 @@ Confusion Matrix:
  [   38    57]]
 ```
 # Using the Model
+The final XGBoost model and the reduced feature list are stored in the models/ directory and can be used to generate predictions on new user–day behavioral data. This will serve as the basis for the deployed runtime system in Semester 2.
+
+### Example Usage:
+```
+import joblib, json
+import pandas as pd
+
+# Load model
+model = joblib.load("models/xgb_final_model.joblib")
+
+# Load the required feature list
+with open("models/feature_list.json", "r") as f:
+    features = json.load(f)
+
+# Prepare new data (must contain the same features)
+df = pd.read_csv("path/to/new_data.csv")
+X = df[features]
+
+# Generate probability scores
+probs = model.predict_proba(X)[:, 1]
+
+# Apply thresholds
+alert_predictions = (probs >= 0.18).astype(int)
+critical_predictions = (probs >= 0.64).astype(int)
+
+print("Alert Mode Flags:", alert_predictions.sum())
+print("Critical Mode Flags:", critical_predictions.sum())
+```
+These prediction outputs will support the alerting system that we will be deploying for Semester 2.
+
+# So What's Next?
+In Semester 2, this offline model will be integrated into a live runtime environment. Planned components include:
+- a FastAPI inference service for real-time prediction
+- Docker containerization for portability
+- a GUI dashboard to display alerts
+- real time predictions on live or simulated user activity logs
