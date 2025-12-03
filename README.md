@@ -66,9 +66,11 @@ This project uses the CERT Insider Threat Dataset, a simulated environment conta
 - web browsing
 - email activity
 - psychometric scores
-- HR events  
+- HR events
+  
 [Download the CERT r4.2 Dataset](https://doi.org/10.1184/R1/12841247)
 
 CERT provides a feature extraction script to be used on these datasets. This script merges all raw logs (logon, file, email, device, web, HR, psychometric)
 into a single feature matrix representing **user–day behavioral data**  
+
 [Access the Feature Extraction Script](https://github.com/lcd-dal/feature-extraction-for-CERT-insider-threat-test-datasets)
