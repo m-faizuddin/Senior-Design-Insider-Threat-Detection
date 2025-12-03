@@ -68,6 +68,8 @@ This project uses the CERT Insider Threat Dataset, a simulated environment conta
 
 [Download the CERT r4.2 Dataset](https://doi.org/10.1184/R1/12841247)
 
+The preprocessed r4.2 dataset is accesible through data/processed/
+
 ### Feature Extraction
 CERT provides a feature extraction script to be used on their datasets. This script merges all raw logs (logon, file, email, USB, web, HR, psychometric)
 into a single feature matrix representing user–day behavioral data.
@@ -77,7 +79,7 @@ Use the repository's documentation to install feature extraction script dependen
 
 [Download the Feature Extraction Script](https://github.com/lcd-dal/feature-extraction-for-CERT-insider-threat-test-datasets)
 
-The script outputs a structured `features.csv` file that is used as input to the offline XGBoost modeling pipeline.
+The script outputs a structured `features.csv` file that is used as input to the offline XGBoost modeling pipeline. It is located in the data/ folder.
 
 ### Preprocessing
 Notebook 01_preprocessing outlines the process we used to clean and split the extracted data. 
