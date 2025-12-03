@@ -91,7 +91,7 @@ This step:
 - saves processed files for modeling
 
 ### Model Comparison
-Notebook 02_modelComparison outlines the process we used to select our best model. In models that struggle with heavy class imbalances, we implemented a SMOTE pipeline to create more synthetic insider threats and see if a more balanced dataset could produce more accurate results.
+Notebook 02_modelComparison outlines the process we used to select our best model. In models that struggle with heavy class imbalances, we implemented a SMOTE pipeline to create more synthetic insider threats and see if a more balanced dataset could produce more accurate results. We trained these models using 5-fold Stratified Cross-Validation on the training dataset. No test data is used at this stage.
 
 We evaluated four baseline models:
 - Logistic Regression
@@ -102,7 +102,8 @@ We evaluated four baseline models:
 XGBoost achieved the highest F1-score and recall, making it the best fit for imbalanced insider classification.
 
 ### Model Tuning
-Notebook 03_modelTuning outlines the process we used to tune our XGBoost model to the best parameters.
+Notebook 03_modelTuning outlines the process we used to tune our XGBoost model to the best parameters. It trains multiple XGBoost models with different hyperparameter 
+settings. Model performance is evaluated on validation folds only.
 
 RandomizedSearchCV produced the final optimized parameters:
 ```
@@ -114,3 +115,29 @@ scale_pos_weight = 100
 These parameters balance underfitting/overfitting and handle extreme class imbalance without using SMOTE.
 
 ### Feature Selection
+Notebook 04_featureSelection uses the tuned XGBoost model to identify and remove low-importance features. XGBoost provides built-in feature importance scores based on how much each
+feature contributes to decision-tree splits. It retrains the tuned XGBoost model using only the selected 
+reduced feature set. Training occurs on the training split, and evaluation is performed on the validation split. This reduced set becomes the final model used for threshold calibration.
+
+### Threshold Evaluation 
+Notebook 05_evaluation performs the final evaluation of your optimized XGBoost model on the test dataset. 
+
+Before selecting operational thresholds, we evaluated the calibration of the model's predicted probabilities to ensure that the output score from 
+the XGBoost model reflects the true likelihood of insider threat activity. This calibration process allowed us to treat the model's output as a 
+reliable risk score that could be evaluated to create operational alert modes.
+
+To determine the optimal thresholds, first load the reduced model and feature list, then generate probability scores for each sample.
+
+A full threshold sweep from 0.0 to 1.0 is used to evaluate precision, recall, F1, and confusion matrix values at different operating points. Based on this
+analysis, two thresholds were selected:
+
+**Alert Mode (0.18):** Prioritizes recall for broad detection.
+
+**Critical Mode (0.64):** Prioritizes precision for critical alerts.
+
+These two modes will aid in the design of our deployed model, which will alert differently for threats based on their threshold. Lower thresholds produce early-warning alerts, while 
+higher thresholds produce high-confidence, critical alerts.
+
+The final reduced XGBoost model was tested on the test dataset. The model generated probability scores for each sample, which were then evaluated at 
+the two chosen thresholds (0.18 and 0.64). For each threshold, we computed precision, recall, F1-score, and confusion matrices. Since the test set was not 
+used during training or tuning, these results reflect the true performance of the model on unseen data.
