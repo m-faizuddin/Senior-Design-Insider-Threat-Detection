@@ -12,7 +12,7 @@ The goal of this semester is to:
 - calibrate model thresholds
 - prepare for deployment in Semester 2
 
-All modeling was performed offline on static CERT logs.
+All modeling was performed offline on static CERT r4.2 logs.
 
 ### Repository Structure
 ```
@@ -45,4 +45,16 @@ Senior-Design-Insider-Threat-Detection/
 └── README.md
 ```
 ### Environment Setup
-
+Create environment: 
+```
+conda create -n certml python=3.10 -y
+conda activate certml
+```
+Install dependencies: 
+```
+pip install -r requirements.txt
+```
+Launch Jupyter Notebook:
+```
+jupyter notebook
+```
