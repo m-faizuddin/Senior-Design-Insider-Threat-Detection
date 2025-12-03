@@ -1,7 +1,5 @@
 ## AI-Based Insider Threat Detection
 ### Mohammed Faizudden, Anna Wille, Maya Wyganowska
-
-# Offline XGBoost Model
 This repository contains the Semester 1 deliverables for the CS492 AI-Based Insider Threat Detection project:
 a complete offline machine-learning pipeline for detecting insider threats using the CERT r4.2 Insider Threat Dataset.
 
@@ -43,6 +41,7 @@ Senior-Design-Insider-Threat-Detection/
 ├── requirements.txt
 └── README.md
 ```
+# Offline XGBoost Model
 ### Environment Setup
 Create environment: 
 ```
