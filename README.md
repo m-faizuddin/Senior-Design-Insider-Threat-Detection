@@ -143,7 +143,7 @@ The final reduced XGBoost model was tested on the test dataset. The model genera
 the two chosen thresholds (0.18 and 0.64). For each threshold, we computed precision, recall, F1-score, and confusion matrices. Since the test set was not 
 used during training or tuning, these results reflect the true performance of the model on unseen data.
 
-### Alert Mode Results
+### Alert Mode Results (threshold = 0.18)
 ```
 Precision: 0.7423  
 Recall:    0.7579  
@@ -154,7 +154,7 @@ Confusion Matrix:
 [[20030   25]
  [   23   72]]
 ```
-### Critical Mode Results
+### Critical Mode Results (threshold = 0.64)
 ```
 Precision: 0.9194  
 Recall:    0.6000  
