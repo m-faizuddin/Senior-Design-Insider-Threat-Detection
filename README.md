@@ -87,7 +87,7 @@ It reads from `ExtractedData/`, performs cleaning and splitting, and then writes
 - `data/processed/val.csv`
 - `data/processed/test.csv`
 
-## Users must download CERT dataset and run the feature extraction script before running Notebook 01.
+## Users must download CERT dataset, run the feature extraction script, and save `ExtractedData/` to project root before running Notebook 01.
 
 
 
