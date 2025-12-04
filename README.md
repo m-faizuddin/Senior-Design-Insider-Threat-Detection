@@ -26,10 +26,10 @@ Senior-Design-Insider-Threat-Detection/
 │
 ├── notebooks/
 │   ├── 01_preprocessing.ipynb
-│   ├── 02_model_comparison.ipynb
-│   ├── 03_model_tuning.ipynb
-│   ├── 04_feature_selection.ipynb
-│   └── 05_threshold_evaluation.ipynb
+│   ├── 02_modelComparison.ipynb
+│   ├── 03_modelTuning.ipynb
+│   ├── 04_featureSelection.ipynb
+│   └── 05_thresholdEvaluation.ipynb
 │
 ├── models/
 │   ├── xgb_final_model.joblib
@@ -39,7 +39,7 @@ Senior-Design-Insider-Threat-Detection/
 │   └── utils.py
 │
 ├── figures/
-│   └── *plots used for final report*
+│   └── // add plots
 │
 ├── requirements.txt
 └── README.md
@@ -111,7 +111,7 @@ This notebook:
 - saves them into `data/processed/`
 
 ### Model Comparison
-Notebook 02_modelComparison outlines the process we used to select our best model. In models that struggle with heavy class imbalances, we implemented a SMOTE pipeline to create more synthetic insider threats and see if a more balanced dataset could produce more accurate results. We trained these models using 5-fold Stratified Cross-Validation on the training dataset. No test data is used at this stage.
+Notebook 02_modelComparison outlines the process we used to select our best model. In models that struggle with heavy class imbalances, we implemented a SMOTE pipeline to create more synthetic insider threats and see if a more balanced dataset could produce more accurate results. We trained these models using 5-fold Stratified Cross-Validation on the training dataset. No test data will be used at this stage.
 
 We evaluated four baseline models:
 - Logistic Regression
