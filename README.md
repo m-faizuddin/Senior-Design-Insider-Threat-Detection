@@ -95,14 +95,16 @@ It reads from `ExtractedData/`, performs cleaning and splitting, and then writes
 
 
 ### Preprocessing
-Notebook 01_preprocessing outlines the process we used to clean and split the extracted data. 
+### Preprocessing (Notebook 01)
 
-This step:
-- loads features.csv
-- cleans unused fields
-- identifies feature columns
+Notebook 01_preprocessing reads the raw extracted CERT data located in the `ExtractedData/` directory (produced by the feature_extraction.py script).
+
+This notebook:
+- loads the multiple extracted CSV files from `ExtractedData/`
+- merges and cleans them into a unified dataset
+- saves this dataset as `data/features.csv`
 - creates train/validation/test splits
-- saves processed files for modeling
+- saves them into `data/processed/`
 
 ### Model Comparison
 Notebook 02_modelComparison outlines the process we used to select our best model. In models that struggle with heavy class imbalances, we implemented a SMOTE pipeline to create more synthetic insider threats and see if a more balanced dataset could produce more accurate results. We trained these models using 5-fold Stratified Cross-Validation on the training dataset. No test data is used at this stage.
