@@ -23,10 +23,9 @@ Senior-Design-Insider-Threat-Detection/
 ├── notebooks/
 │   ├── 01_preprocessing.ipynb
 │   ├── 02_model_comparison.ipynb
-│   ├── 03_xgboost_tuning.ipynb
+│   ├── 03_model_tuning.ipynb
 │   ├── 04_feature_selection.ipynb
-│   ├── 05_threshold_evaluation.ipynb
-│   └── 06_calibration_curves.ipynb (optional)
+│   └── 05_threshold_evaluation.ipynb
 │
 ├── models/
 │   ├── xgb_final_model.joblib
