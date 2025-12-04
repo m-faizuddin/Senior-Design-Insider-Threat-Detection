@@ -120,13 +120,17 @@ We evaluated four baseline models:
 - XGBoost
 
 And achieved these results:
-```
+
 Model	             Precision	Recall	F1 Score	Precision Rank	Recall Rank	F1 Rank
+
 XGBoost	           0.796	    0.642	 0.708	   2	             2	          1
+
 Linear SVM + SMOTE	0.26	     0.605	 0.363	   3	             3	          2
+
 LogReg + SMOTE    	0.19	     0.663	 0.295	   4	             1          	3
+
 Random Forest	     0.911	    0.174	 0.29	    1	             4	          4
-```
+
 XGBoost achieved the highest F1-score and recall, making it the best fit for imbalanced insider classification.
 
 ### Model Tuning
