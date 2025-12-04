@@ -76,7 +76,7 @@ Use the repository's documentation to install feature extraction script dependen
 
 [Download the Feature Extraction Script](https://github.com/lcd-dal/feature-extraction-for-CERT-insider-threat-test-datasets)
 
-After running the CERT feature extraction script, you will have a local `ExtractedData/` folder containing aggregated behavioral logs.
+After running the CERT feature extraction script, you will have a local `ExtractedData/` folder containing aggregated behavioral logs. **Copy `ExtractedData/` into the project root.**
 
 For this project, `ExtractedData/` is treated as a local source and is not tracked in the GitHub repository.
 **Notebook `01_preprocessing.ipynb` expects an `ExtractedData/` folder in the project root.**
@@ -87,7 +87,7 @@ It reads from `ExtractedData/`, performs cleaning and splitting, and then writes
 - `data/processed/val.csv`
 - `data/processed/test.csv`
 
-## Users must download CERT r4.2 and run the feature extraction script before running Notebook 01.
+## Users must download CERT dataset and run the feature extraction script before running Notebook 01.
 
 
 
