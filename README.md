@@ -76,7 +76,19 @@ Use the repository's documentation to install feature extraction script dependen
 
 [Download the Feature Extraction Script](https://github.com/lcd-dal/feature-extraction-for-CERT-insider-threat-test-datasets)
 
-The script outputs a structured `features.csv` file that is used as input to the offline XGBoost modeling pipeline. It is located in the data/ folder.
+After running the CERT feature extraction script, you will have a local `ExtractedData/` folder containing aggregated behavioral logs.
+
+For this project, `ExtractedData/` is treated as a local raw source and is not tracked in the GitHub repository due to its size.
+
+**Notebook `01_preprocessing.ipynb` expects an `ExtractedData/` folder in the project root.**
+
+It reads from `ExtractedData/`, performs cleaning and splitting, and then writes the processed modeling files into the `data/` directory:
+- `data/features.csv`
+- `data/processed/train.csv`
+- `data/processed/val.csv`
+- `data/processed/test.csv`
+
+# Users must download CERT r4.2 and run the feature extraction script before running Notebook 01.
 
 ### Preprocessing
 Notebook 01_preprocessing outlines the process we used to clean and split the extracted data. 
