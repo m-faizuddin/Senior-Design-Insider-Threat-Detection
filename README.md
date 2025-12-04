@@ -110,7 +110,7 @@ This notebook:
 - creates train/validation/test splits
 - saves them into `data/processed/`
 
-### Model Comparison
+### Model Comparison (Notebook 02)
 Notebook 02_modelComparison outlines the process we used to select our best model. In models that struggle with heavy class imbalances, we implemented a SMOTE pipeline to create more synthetic insider threats and see if a more balanced dataset could produce more accurate results. We trained these models using 5-fold Stratified Cross-Validation on the training dataset. No test data will be used at this stage.
 
 We evaluated four baseline models:
@@ -130,7 +130,7 @@ Random Forest         0.911       0.174    0.290      1                4        
 ```
 XGBoost achieved the highest F1-score and recall, making it the best fit for imbalanced insider classification.
 
-### Model Tuning
+### Model Tuning (Notebook 03)
 Notebook 03_modelTuning outlines the process we used to tune our XGBoost model to the best parameters. It trains multiple XGBoost models with different hyperparameter 
 settings. Model performance is evaluated on validation folds only.
 
@@ -143,12 +143,12 @@ scale_pos_weight = 100
 ```
 These parameters balance underfitting/overfitting and handle extreme class imbalance without using SMOTE.
 
-### Feature Selection
+### Feature Selection (Notebook 04)
 Notebook 04_featureSelection uses the tuned XGBoost model to identify and remove low-importance features. XGBoost provides built-in feature importance scores based on how much each
 feature contributes to decision-tree splits. It retrains the tuned XGBoost model using only the selected 
 reduced feature set. Training occurs on the training split, and evaluation is performed on the validation split. This reduced set becomes the final model used for threshold calibration.
 
-### Threshold Evaluation 
+### Threshold Evaluation  (Notebook 05)
 Notebook 05_evaluation performs the final evaluation of your optimized XGBoost model on the test dataset. 
 
 Before selecting operational thresholds, we evaluated the calibration of the model's predicted probabilities to ensure that the output score from 
