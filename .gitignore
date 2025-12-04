@@ -1,0 +1,55 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Conda environment files
+*.conda
+*.yaml
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+*.temp
+
+# Model artifacts (if large)
+models/*.json
+models/*.pkl
+models/*.h5
+*.joblib
+
+# Data files (optional, keep if needed)
+data/raw/
+data/*.tar.gz
+data/*.zip
+
+# Ignore extracted CERT dataset since it’s huge
+data/cert_raw/
+data/extracted/
+
+# VS Code / PyCharm
+.vscode/
+.idea/
+
+# Build artifacts
+dist/
+build/
+
+# Figures and bokeh/plotly states
+*.png
+*.svg
+*.jpg
+*.jpeg
