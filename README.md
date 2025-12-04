@@ -53,7 +53,7 @@ Install dependencies:
 ```
 pip install -r requirements.txt
 ```
-Launch Jupyter Notebook:
+Launch Jupyter Notebook **through project root directory**:
 ```
 jupyter notebook
 ```
