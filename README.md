@@ -11,8 +11,10 @@ The goal of this semester is to:
 - prepare for deployment in Semester 2
 
 All modeling was performed offline on static CERT r4.2 logs.
-### Clone repository using `git clone <URL>`
-### Open project root directory using `cd Senior-Design-Insider-Threat-Detection`
+### Preliminary Requirements:
+Clone repository using `git clone <URL>`
+
+Open project root directory using `cd Senior-Design-Insider-Threat-Detection`
 
 ### Repository Structure
 ```
