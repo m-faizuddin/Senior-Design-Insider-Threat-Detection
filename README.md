@@ -67,8 +67,6 @@ This project uses the CERT Insider Threat Dataset, a simulated environment conta
 
 [Download the CERT r4.2 Dataset](https://doi.org/10.1184/R1/12841247)
 
-The preprocessed r4.2 dataset is accesible through data/processed/
-
 ### Feature Extraction
 CERT provides a feature extraction script to be used on their datasets. This script merges all raw logs (logon, file, email, USB, web, HR, psychometric)
 into a single feature matrix representing user–day behavioral data.
