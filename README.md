@@ -78,8 +78,7 @@ Use the repository's documentation to install feature extraction script dependen
 
 After running the CERT feature extraction script, you will have a local `ExtractedData/` folder containing aggregated behavioral logs.
 
-For this project, `ExtractedData/` is treated as a local raw source and is not tracked in the GitHub repository due to its size.
-
+For this project, `ExtractedData/` is treated as a local source and is not tracked in the GitHub repository.
 **Notebook `01_preprocessing.ipynb` expects an `ExtractedData/` folder in the project root.**
 
 It reads from `ExtractedData/`, performs cleaning and splitting, and then writes the processed modeling files into the `data/` directory:
