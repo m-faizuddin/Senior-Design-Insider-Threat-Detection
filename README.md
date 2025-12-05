@@ -158,14 +158,14 @@ reduced feature set. Training occurs on the training split, and evaluation is pe
 
 Results:
 ```
- precision    recall  f1-score   support
+Precision    Recall  F1-Score   Support
+----------------------------------------
+Class 0       1.00     1.00      1.00     13370
+Class 1       0.88     0.70      0.78        63
 
-           0       1.00      1.00      1.00     13370
-           1       0.88      0.70      0.78        63
-
-    accuracy                           1.00     13433
-   macro avg       0.94      0.85      0.89     13433
-weighted avg       1.00      1.00      1.00     13433
+Accuracy                          1.00     13433
+Macro Avg     0.94     0.85      0.89     13433
+Weighted Avg  1.00     1.00      1.00     13433
 
 Confustion Matrix:
 [[13364     6]
