@@ -136,10 +136,18 @@ settings. Model performance is evaluated on validation folds only.
 
 RandomizedSearchCV produced the final optimized parameters:
 ```
-learning_rate = 0.1
-max_depth = 4
-n_estimators = 400
-scale_pos_weight = 100
+Best mean CV F1: 0.7143576006609965
+Best params:
+{'subsample': 0.7,
+ 'scale_pos_weight': 158.325,
+ 'reg_lambda': 3,
+ 'reg_alpha': 0,
+ 'n_estimators': 300,
+ 'min_child_weight': 1,
+ 'max_depth': 6,
+ 'learning_rate': 0.1,
+ 'gamma': 0,
+ 'colsample_bytree': 0.8}
 ```
 These parameters balance underfitting/overfitting and handle extreme class imbalance without using SMOTE.
 
