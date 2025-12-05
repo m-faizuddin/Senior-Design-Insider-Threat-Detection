@@ -108,7 +108,6 @@ It reads from `ExtractedData/`, performs cleaning and splitting, and then writes
 # Let's get down to business...
 
 
-### Preprocessing
 ### Preprocessing (Notebook 01)
 
 Notebook 01_preprocessing reads the raw extracted CERT data located in the `ExtractedData/` directory (produced by the feature_extraction.py script).
