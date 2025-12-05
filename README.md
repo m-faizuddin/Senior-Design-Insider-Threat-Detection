@@ -176,12 +176,12 @@ Accuracy                          1.00     13433
 Macro Avg     0.94     0.85      0.89     13433
 Weighted Avg  1.00     1.00      1.00     13433
 
-Confustion Matrix:
+Confusion Matrix:
 [[13364     6]
  [   19    44]]
 ```
 ### Threshold Evaluation  (Notebook 05)
-Notebook 05 will calibrate the model, select optimal thresholds, evaluate on test set
+Notebook 05 will calibrate the model, select optimal thresholds, and evaluate on test set
 
 #### Model Calibration
 - Calibration curve: agreement between predicted and actual probabilities
