@@ -149,7 +149,7 @@ Best params:
  'gamma': 0,
  'colsample_bytree': 0.8}
 ```
-These parameters balance underfitting/overfitting and handle extreme class imbalance without using SMOTE.
+This parameter set allows XGBoost to learn complex insider-threat patterns without overfitting, while properly correcting for the dataset’s strong class imbalance.
 
 ### Feature Selection (Notebook 04)
 Notebook 04_featureSelection uses the tuned XGBoost model to identify and remove low-importance features. XGBoost provides built-in feature importance scores based on how much each
