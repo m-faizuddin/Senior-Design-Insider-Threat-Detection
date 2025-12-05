@@ -29,6 +29,10 @@ Open project root directory using `cd Senior-Design-Insider-Threat-Detection`
 ```
 Senior-Design-Insider-Threat-Detection/
 │
+├── examples/
+|   ├── figures/
+|   ├── models/
+│
 ├── data/            
 │   ├── processed/          
 │   └── features.csv        
@@ -41,14 +45,11 @@ Senior-Design-Insider-Threat-Detection/
 │   └── 05_thresholdEvaluation.ipynb
 │
 ├── models/
-│   ├── xgb_final_model.joblib
-│   └── feature_list.json
 │
 ├── src/
 │   └── utils.py
 │
 ├── figures/
-│   └── // add plots
 │
 ├── requirements.txt
 └── README.md
