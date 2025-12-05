@@ -183,17 +183,17 @@ Confustion Matrix:
 ### Threshold Evaluation  (Notebook 05)
 Notebook 05 will calibrate the model, select optimal thresholds, evaluate on test set
 
-#### Step 1: Model Calibration
+#### Model Calibration
 - Calibration curve: agreement between predicted and actual probabilities
 - Assessment: Model is well-calibrated, especially at high confidence levels
 - Conclusion: Probability scores can be trusted for threshold-based decisions
 
-#### Step 2: Threshold Sweep
+#### Threshold Sweep
 - Method: Evaluate 500 thresholds from 0.0 to 1.0 on validation set
 - Metrics: Precision, Recall, F1-Score at each threshold
 - Optimal F1: 0.789 at threshold 0.649
 
-#### Step 3: Threshold Selection
+#### Threshold Selection
 
 **Alert Mode (0.26)**:
 - Goal: Maximize recall while maintaining acceptable precision
@@ -205,7 +205,7 @@ Notebook 05 will calibrate the model, select optimal thresholds, evaluate on tes
 - Selection criteria: Global F1 maximum
 - Validation performance: Precision 93.48%, Recall 68.25%, F1 0.7890
 
-#### Step 4: Test Set Evaluation
+#### Test Set Evaluation
 
 **Alert Mode Results (Threshold = 0.26)**:
 ```
@@ -239,7 +239,7 @@ Actual Normal   13,370      1
 Key Insight: Near-perfect precision with only 1 FP out of 13,371 normal
 ```
 
-#### Step 5: Model Discrimination
+#### Model Discrimination
 
 **ROC Curve**:
 - AUC: 0.997
@@ -249,7 +249,7 @@ Key Insight: Near-perfect precision with only 1 FP out of 13,371 normal
 - AUC: 0.840 
 - Interpretatio*: Robust performance despite class imbalance
 
-#### Step 6: Probability Distribution Analysis
+#### Probability Distribution Analysis
 - Normal users: Tightly clustered near 0.0 (99.9% < 0.1)
 - Threat users: Bimodal with peak at 0.9-1.0
 - Separation: Clear between classes 
