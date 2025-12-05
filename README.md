@@ -156,6 +156,21 @@ Notebook 04_featureSelection uses the tuned XGBoost model to identify and remove
 feature contributes to decision-tree splits. It retrains the tuned XGBoost model using only the selected 
 reduced feature set. Training occurs on the training split, and evaluation is performed on the validation split. This reduced set becomes the final model used for threshold calibration.
 
+Results:
+```
+ precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00     13370
+           1       0.88      0.70      0.78        63
+
+    accuracy                           1.00     13433
+   macro avg       0.94      0.85      0.89     13433
+weighted avg       1.00      1.00      1.00     13433
+
+Confustion Matrix:
+[[13364     6]
+ [   19    44]]
+```
 ### Threshold Evaluation  (Notebook 05)
 Notebook 05_evaluation performs the final evaluation of your optimized XGBoost model on the test dataset. 
 
