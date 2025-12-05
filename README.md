@@ -242,6 +242,7 @@ Actual Normal   13,370      1
 
 Key Insight: Near-perfect precision with only 1 FP out of 13,371 normal
 ```
+# Model Visualization
 
 #### Model Discrimination
 
@@ -258,6 +259,49 @@ Key Insight: Near-perfect precision with only 1 FP out of 13,371 normal
 - Threat users: Bimodal with peak at 0.9-1.0
 - Separation: Clear between classes 
 - Threat median: 0.65 (matches Critical Mode threshold!)
+
+## SHAP Analysis
+
+### Global Feature Importance
+
+SHAP analysis revealed USB device behavior as the dominant insider 
+threat indicator. The top 5 features are:
+
+1. USB Mean Duration (SHAP: 3.57) - Average USB session length
+2. USB Event Count (SHAP: 1.09) - Number of USB connections
+3. USB Pattern Complexity (SHAP: 0.76) - PCA of USB behavior
+4. HTTP Requests (SHAP: 0.58) - Web activity volume
+5. Work-Hour USB (SHAP: 0.48) - USB usage during business hours
+
+USB duration alone is 3x more influential than the next feature, 
+indicating data exfiltration through removable media such as a USB is the primary 
+threat vector in this dataset.
+
+### Non-Linear Relationships
+
+Dependence plots reveal non-monotonic relationships. USB event count 
+shows an inverted-U pattern: 10-25 events per week represents peak 
+threat probability, while very high counts (50+) decrease suspicion, 
+likely representing legitimate power users.
+
+### Individual Prediction Explanations
+
+**Highest Confidence Threat (100% probability):**
+This user exhibited extreme USB session duration (+2.21 SHAP), 
+combined with high web activity (+0.61) and unusual overall patterns 
+(+0.77), resulting in clear data exfiltration signature.
+
+**False Positive (83% probability):**
+Flagged primarily due to USB duration (+2.07 SHAP), but numerous normal 
+behaviors (personality traits, email patterns, moderate web use) 
+provided countervailing evidence. This demonstrates how the model enables analyst override in edge cases.
+
+**Missed Threat (13% probability):**
+Exhibited mixed signals: threat indicators present but diluted by 
+substantial normal work activity. The 107 remaining features 
+contributed -2.82 SHAP, overwhelming the positive signals. This 
+represents a sophisticated threat actor maintaining cover through 
+normal productivity.
 
 # Using the Model
 The final XGBoost model and the reduced feature list are stored in the models/ directory and can be used to generate predictions on new user–day behavioral data. 
@@ -298,7 +342,6 @@ for idx in critical_cases.index:
     print(f"CRITICAL: User {user} - Threat probability: {prob:.2%}")
 ```
 These prediction outputs will support the alerting system that we will be deploying for Semester 2.
-
 # So What's Next?
 In Semester 2, this offline model will be integrated into a live runtime environment. Planned components include:
 - a FastAPI inference service for real-time prediction
