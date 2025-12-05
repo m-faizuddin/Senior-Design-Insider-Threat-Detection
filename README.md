@@ -260,29 +260,38 @@ The final XGBoost model and the reduced feature list are stored in the models/ d
 
 ### Example Usage:
 ```
-import joblib, json
+import joblib
+import json
 import pandas as pd
 
-# Load model
-model = joblib.load("models/xgb_final_model.joblib")
-
-# Load the required feature list
+# Load model and features
+model = joblib.load("models/xgb_reduced_model.joblib")
 with open("models/feature_list.json", "r") as f:
     features = json.load(f)
 
-# Prepare new data (must contain the same features)
-df = pd.read_csv("path/to/new_data.csv")
+# Prepare new data (must contain the same 121 features)
+df = pd.read_csv("path/to/new_user_data.csv")
 X = df[features]
 
 # Generate probability scores
 probs = model.predict_proba(X)[:, 1]
 
 # Apply thresholds
-alert_predictions = (probs >= 0.18).astype(int)
-critical_predictions = (probs >= 0.64).astype(int)
+alert_predictions = (probs >= 0.26).astype(int)
+critical_predictions = (probs >= 0.65).astype(int)
 
-print("Alert Mode Flags:", alert_predictions.sum())
-print("Critical Mode Flags:", critical_predictions.sum())
+# Generate alerts
+alert_cases = df[alert_predictions == 1]
+critical_cases = df[critical_predictions == 1]
+
+print(f"Alert Mode: {alert_predictions.sum()} alerts")
+print(f"Critical Mode: {critical_predictions.sum()} critical alerts")
+
+# Get probability scores for alerts
+for idx in critical_cases.index:
+    user = df.loc[idx, 'user']
+    prob = probs[idx]
+    print(f"CRITICAL: User {user} - Threat probability: {prob:.2%}")
 ```
 These prediction outputs will support the alerting system that we will be deploying for Semester 2.
 
