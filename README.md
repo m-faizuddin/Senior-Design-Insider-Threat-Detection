@@ -42,7 +42,7 @@ Senior-Design-Insider-Threat-Detection/
 │   ├── 02_modelComparison.ipynb
 │   ├── 03_modelTuning.ipynb
 │   ├── 04_featureSelection.ipynb
-│   └── 05_thresholdEvaluation.ipynb
+│   └── 05_modelEvaluation.ipynb
 │
 ├── models/
 │
