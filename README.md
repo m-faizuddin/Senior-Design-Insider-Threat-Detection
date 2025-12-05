@@ -248,7 +248,7 @@ Key Insight: Near-perfect precision with only 1 FP out of 13,371 normal
 
 **Precision-Recall Curve**:
 - AUC: 0.840 
-- Interpretatio*: Robust performance despite class imbalance
+- Interpretation: Robust performance despite class imbalance
 
 #### Probability Distribution Analysis
 - Normal users: Tightly clustered near 0.0 (99.9% < 0.1)
