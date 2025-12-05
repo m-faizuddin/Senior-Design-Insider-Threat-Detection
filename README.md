@@ -180,6 +180,10 @@ Confusion Matrix:
 [[13364     6]
  [   19    44]]
 ```
+Feature selection significantly simplified the XGBoost model while maintaining strong performance.
+The reduced model achieved 0.88 precision and 0.70 recall on the validation set, indicating that the selected features capture core behavioral signals required for insider threat detection. The confusion matrix shows low false positives and acceptable false negatives, producing a balanced F1-score of 0.78 for the positive class. These results demonstrate that removing low-importance features creates a more lightweight model without degrading detection ability.
+The reduced model is adopted as the final model used for probability calibration and threshold optimization.
+
 ### Threshold Evaluation  (Notebook 05)
 Notebook 05 will calibrate the model, select optimal thresholds, and evaluate on test set
 
