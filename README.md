@@ -172,7 +172,7 @@ Confustion Matrix:
  [   19    44]]
 ```
 ### Threshold Evaluation  (Notebook 05)
-Notebook 05_evaluation performs the final evaluation of your optimized XGBoost model on the test dataset. 
+Notebook 05_evaluation performs the final evaluation of the optimized XGBoost model on the test dataset. 
 
 Before selecting operational thresholds, we evaluated the calibration of the model's predicted probabilities to ensure that the output score from 
 the XGBoost model reflects the true likelihood of insider threat activity. This calibration process allowed us to treat the model's output as a 
