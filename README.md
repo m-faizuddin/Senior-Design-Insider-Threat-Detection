@@ -1,16 +1,25 @@
 # AI-Based Insider Threat Detection
 ### Mohammed Faizudden, Anna Wille, Maya Wyganowska
-This repository contains the Semester 1 deliverables for the CS492 AI-Based Insider Threat Detection project:
-a complete offline machine-learning pipeline for detecting insider threats using the CERT r4.2 Insider Threat Dataset.
+Project Goal:
 
-The goal of this semester is to:
+Create a complete offline machine-learning pipeline for detecting insider threats using the CERT r4.2 Insider Threat Dataset.
+
+This repository will guide you through how to:
 - build a reproducible modeling pipeline
 - perform feature optimization
 - tune a high-recall and high-precision classifier
 - calibrate model thresholds
-- prepare for deployment in Semester 2
+- prepare for deployment
 
 All modeling was performed offline on static CERT r4.2 logs.
+
+### Quick Results Summary
+
+| Mode | Threshold | Precision | Recall | F1-Score | False Positives | Use Case |
+|------|-----------|-----------|--------|----------|-----------------|----------|
+| **Alert** | 0.26 | 77.78% | 77.78% | 0.7778 | 14 (0.10%) | Early warning, comprehensive monitoring |
+| **Critical** | 0.65 | 97.78% | 69.84% | 0.8148 | 1 (0.007%) | High-confidence, immediate action |
+
 ### Preliminary Requirements:
 Clone repository using `git clone <URL>`
 
@@ -172,51 +181,80 @@ Confustion Matrix:
  [   19    44]]
 ```
 ### Threshold Evaluation  (Notebook 05)
-Notebook 05_evaluation performs the final evaluation of the optimized XGBoost model on the test dataset. 
+Notebook 05 will calibrate the model, select optimal thresholds, evaluate on test set
 
-Before selecting operational thresholds, we evaluated the calibration of the model's predicted probabilities to ensure that the output score from 
-the XGBoost model reflects the true likelihood of insider threat activity. This calibration process allowed us to treat the model's output as a 
-reliable risk score that could be evaluated to create operational alert modes.
+#### Step 1: Model Calibration
+- Calibration curve: agreement between predicted and actual probabilities
+- Assessment: Model is well-calibrated, especially at high confidence levels
+- Conclusion: Probability scores can be trusted for threshold-based decisions
 
-To determine the optimal thresholds, first load the reduced model and feature list, then generate probability scores for each sample.
+#### Step 2: Threshold Sweep
+- Method: Evaluate 500 thresholds from 0.0 to 1.0 on validation set
+- Metrics: Precision, Recall, F1-Score at each threshold
+- Optimal F1: 0.789 at threshold 0.649
 
-A full threshold sweep from 0.0 to 1.0 is used to evaluate precision, recall, F1, and confusion matrix values at different operating points. Based on this
-analysis, two thresholds were selected:
+#### Step 3: Threshold Selection
 
-**Alert Mode (0.18):** Prioritizes recall for broad detection.
+**Alert Mode (0.26)**:
+- Goal: Maximize recall while maintaining acceptable precision
+- Selection criteria: Recall ≥ 75%, maximize F1
+- Validation performance: Precision 74.24%, Recall 77.78%, F1 0.7597
 
-**Critical Mode (0.64):** Prioritizes precision for critical alerts.
+**Critical Mode (0.65)**:
+- Goal: Maximize precision for actionable alerts
+- Selection criteria: Global F1 maximum
+- Validation performance: Precision 93.48%, Recall 68.25%, F1 0.7890
 
-These two modes will aid in the design of our deployed model, which will alert differently for threats based on their threshold. Lower thresholds produce early-warning alerts, while 
-higher thresholds produce high-confidence, critical alerts.
+#### Step 4: Test Set Evaluation
 
-# Model Testing & Evaluation
-The final reduced XGBoost model was tested on the test dataset. The model generated probability scores for each sample, which were then evaluated at 
-the two chosen thresholds (0.18 and 0.64). For each threshold, we computed precision, recall, F1-score, and confusion matrices. Since the test set was not 
-used during training or tuning, these results reflect the true performance of the model on unseen data.
-
-### Alert Mode Results (threshold = 0.18)
+**Alert Mode Results (Threshold = 0.26)**:
 ```
-Precision: 0.7423  
-Recall:    0.7579  
-F1-score:  0.7500  
-Accuracy:  0.9976  
+Precision: 77.78%
+Recall:    77.78%
+F1-Score:  0.7778
+Accuracy:  99.79%
 
 Confusion Matrix:
-[[20030   25]
- [   23   72]]
+                Predicted
+                Normal  Threat
+Actual Normal   13,357     14  
+       Threat      14     49   
+
+Key Insight: Perfect precision-recall balance (14 FP = 14 FN)
 ```
-### Critical Mode Results (threshold = 0.64)
+
+**Critical Mode Results (Threshold = 0.65)**:
 ```
-Precision: 0.9194  
-Recall:    0.6000  
-F1-score:  0.7261  
-Accuracy:  0.9979  
+Precision: 97.78%
+Recall:    69.84%
+F1-Score:  0.8148
+Accuracy:  99.85%
 
 Confusion Matrix:
-[[20050     5]
- [   38    57]]
+                Predicted
+                Normal  Threat
+Actual Normal   13,370      1   
+       Threat      19     44   
+
+Key Insight: Near-perfect precision with only 1 FP out of 13,371 normal
 ```
+
+#### Step 5: Model Discrimination
+
+**ROC Curve**:
+- AUC: 0.997
+- Interpretation: 99.7% probability model ranks threats higher than normals
+
+**Precision-Recall Curve**:
+- AUC: 0.840 
+- Interpretatio*: Robust performance despite class imbalance
+
+#### Step 6: Probability Distribution Analysis
+- Normal users: Tightly clustered near 0.0 (99.9% < 0.1)
+- Threat users: Bimodal with peak at 0.9-1.0
+- Separation: Clear between classes 
+- Threat median: 0.65 (matches Critical Mode threshold!)
+
 # Using the Model
 The final XGBoost model and the reduced feature list are stored in the models/ directory and can be used to generate predictions on new user–day behavioral data. This will serve as the basis for the deployed runtime system in Semester 2.
 
