@@ -256,7 +256,7 @@ Key Insight: Near-perfect precision with only 1 FP out of 13,371 normal
 - Threat median: 0.65 (matches Critical Mode threshold!)
 
 # Using the Model
-The final XGBoost model and the reduced feature list are stored in the models/ directory and can be used to generate predictions on new user–day behavioral data. This will serve as the basis for the deployed runtime system in Semester 2.
+The final XGBoost model and the reduced feature list are stored in the models/ directory and can be used to generate predictions on new user–day behavioral data. 
 
 ### Example Usage:
 ```
